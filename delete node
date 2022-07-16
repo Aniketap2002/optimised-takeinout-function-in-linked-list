@@ -1,0 +1,93 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+class Node{
+    public:
+    int data;
+    Node* next;
+    
+    Node(int data)
+    {
+        this->data=data;
+        this->next=NULL;
+    }
+};
+
+Node* takeinput()
+{
+    int data;
+    cin>>data;
+    Node* head = NULL;
+    Node*tail = NULL;
+    while(data!=-1)
+    {
+        Node* newnode=new Node(data);
+        if(head==NULL)
+        {
+            head=newnode;
+            tail=newnode;
+        }
+        else{
+            tail->next=newnode;
+            tail=tail->next;
+        }
+        cin>>data;
+    }
+    return head;
+}
+
+Node* insert(Node* head)
+{
+    int n;
+    cin>>n;
+    int data=4;
+    Node* temp=head;
+    Node* temp1;
+    while(n>1)
+    {
+        temp=temp->next;
+        n--;
+    }
+    temp1=temp->next;
+    Node* newnode=new Node(data);
+    temp->next=newnode;
+    newnode->next=temp1;
+    return head;
+}
+
+
+Node *del (Node* head)
+{
+    Node* temp=head;
+    Node* temp1=head;
+    int n;
+    cin>>n;
+    while(n>1)
+    {
+        temp=temp->next;
+        n--;
+    }
+    temp1=temp->next;
+    Node* temp2=temp1->next;
+
+    temp->next=temp2;
+    temp1->next=NULL;
+    return head; 
+
+}
+
+void print(Node* head)
+{
+    while(head!=NULL){
+        cout<<head->data;
+        head=head->next;
+    }
+    cout<<endl;
+}
+
+int main()
+{
+    Node*head=takeinput();
+    del(head);
+    print(head);
+}
